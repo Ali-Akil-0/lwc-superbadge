@@ -1,9 +1,12 @@
+import  {LightningElement,api} from "lwc"  ; 
 //import fivestar static resource, call it fivestar
+import fivestar from '@salesforce/resourceUrl/fivestar' ; 
 
 // add constants here
 
 export default class FiveStarRating extends LightningElement {
   //initialize public readOnly and value properties
+  // value and readOnly are public :!!!!!!
   readOnly;
   value;
 
@@ -11,7 +14,9 @@ export default class FiveStarRating extends LightningElement {
   isRendered;
 
   //getter function that returns the correct class depending on if it is readonly
-  starClass() {}
+  starClass() {
+
+  }
 
   // Render callback to load the script once the component renders.
   renderedCallback() {
