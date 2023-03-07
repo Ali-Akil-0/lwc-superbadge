@@ -1,0 +1,33 @@
+<template>
+    <template if:false={wiredRecord.data}>
+      <!-- lightning card for the label when wiredRecord has no data goes here  -->
+      <lightning-card >
+        <span class="no-boat-height slds-float_absolute-center" > {Please_select_a_boat}</span>
+      </lightning-card>
+    </template>
+    <template if:true={wiredRecord.data}>
+       <!-- lightning card for the content when wiredRecord has data goes here  -->
+        <lightning-tabset variant="scoped">
+            <lightning-tab label={Details} >
+                <lightning-card title={boatName} icon-name={detailsTabIconName}>
+                 <lightning-button slot="actions" label={Full_Details} onclick={navigateToRecordViewPage} >
+                    </lightning-button>
+                    <lightning-record-view-form record-id={Id} object-api-name='Boat__c' density="compact">
+                    <span>Boat Type </span>    <lightning-output-field field-name="BoatType__c"></lightning-output-field>
+                      <span>Length</span>  <lightning-output-field field-name="Length__c"></lightning-output-field>
+                       <span>Price</span> <lightning-output-field field-name="Price__c"></lightning-output-field>
+                       <span>Description</span> <lightning-output-field field-name="Description__c"></lightning-output-field>
+
+                    </lightning-record-view-form>
+                </lightning-card>
+            </lightning-tab>
+            <lightning-tab label={Reviews} value="reviews">
+                <c-boat-reviews record-id={Id} ></c-boat-reviews>
+            </lightning-tab>
+            <lightning-tab label={Add_Review} >
+                <c-boat-add-review-form record-id={Id} oncreatereview={handleReviewCreated}></c-boat-add-review-form>
+            </lightning-tab>
+        </lightning-tabset>
+    </template>
+  </template>
+  
